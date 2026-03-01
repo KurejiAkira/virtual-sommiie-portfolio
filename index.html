@@ -30,7 +30,6 @@
     cursor: none;
   }
 
-  /* Custom cursor */
   .cursor {
     width: 12px; height: 12px;
     background: var(--blush);
@@ -53,7 +52,6 @@
     opacity: 0.4;
   }
 
-  /* Nav */
   nav {
     position: fixed; top: 0; left: 0; right: 0;
     z-index: 100;
@@ -93,7 +91,6 @@
 
   .nav-links a:hover { color: var(--blush); }
 
-  /* Hero */
   .hero {
     min-height: 100vh;
     display: flex;
@@ -111,7 +108,6 @@
       radial-gradient(ellipse 40% 60% at 10% 80%, rgba(45, 10, 31, 0.8) 0%, transparent 60%);
   }
 
-  /* Topographic lines */
   .topo-svg {
     position: absolute;
     inset: 0;
@@ -131,8 +127,6 @@
     gap: 4rem;
     align-items: center;
   }
-
-  .hero-left { }
 
   .hero-tag {
     display: inline-flex;
@@ -299,9 +293,7 @@
     border-top: 1px solid rgba(196, 96, 122, 0.15);
   }
 
-  .stat {
-    text-align: center;
-  }
+  .stat { text-align: center; }
 
   .stat-num {
     font-family: 'Cormorant Garamond', serif;
@@ -324,7 +316,6 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
-  /* Sections common */
   section {
     padding: 7rem 3rem;
     max-width: 1300px;
@@ -364,10 +355,7 @@
     color: var(--blush);
   }
 
-  /* About */
-  .about-section {
-    border-top: 1px solid rgba(196, 96, 122, 0.1);
-  }
+  .about-section { border-top: 1px solid rgba(196, 96, 122, 0.1); }
 
   .about-grid {
     display: grid;
@@ -390,8 +378,6 @@
     color: var(--cream);
     font-weight: 600;
   }
-
-  .about-right { }
 
   .about-services {
     display: flex;
@@ -432,7 +418,6 @@
 
   .service-item:hover .service-arrow { transform: translateX(4px); }
 
-  /* Expertise grid */
   .expertise-section {
     background: rgba(45, 10, 31, 0.3);
     border-top: 1px solid rgba(196, 96, 122, 0.1);
@@ -441,10 +426,7 @@
     padding: 7rem 3rem;
   }
 
-  .expertise-inner {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
+  .expertise-inner { max-width: 1300px; margin: 0 auto; }
 
   .expertise-grid {
     display: grid;
@@ -480,10 +462,7 @@
 
   .expertise-card:hover::after { transform: scaleX(1); }
 
-  .expertise-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1.2rem;
-  }
+  .expertise-icon { font-size: 1.8rem; margin-bottom: 1.2rem; }
 
   .expertise-title {
     font-family: 'Syne', sans-serif;
@@ -512,7 +491,7 @@
   }
 
   .expertise-list li::before {
-    content: '—';
+    content: '|';
     position: absolute;
     left: 0;
     color: var(--rose);
@@ -521,10 +500,7 @@
 
   .expertise-card:hover .expertise-list li { color: var(--warm); }
 
-  /* Case studies */
-  .cases-section {
-    border-top: 1px solid rgba(196, 96, 122, 0.1);
-  }
+  .cases-section { border-top: 1px solid rgba(196, 96, 122, 0.1); }
 
   .cases-grid {
     display: grid;
@@ -600,9 +576,7 @@
     gap: 1rem;
   }
 
-  .outcome {
-    text-align: right;
-  }
+  .outcome { text-align: right; }
 
   .outcome-val {
     font-family: 'Cormorant Garamond', serif;
@@ -620,10 +594,7 @@
     margin-top: 0.2rem;
   }
 
-  /* Tools */
-  .tools-section {
-    border-top: 1px solid rgba(196, 96, 122, 0.1);
-  }
+  .tools-section { border-top: 1px solid rgba(196, 96, 122, 0.1); }
 
   .tools-grid {
     display: flex;
@@ -657,7 +628,6 @@
     color: var(--blush);
   }
 
-  /* Testimonials */
   .testimonials-section {
     background: rgba(45, 10, 31, 0.3);
     border-top: 1px solid rgba(196, 96, 122, 0.1);
@@ -665,10 +635,7 @@
     padding: 7rem 3rem;
   }
 
-  .testimonials-inner {
-    max-width: 1300px;
-    margin: 0 auto;
-  }
+  .testimonials-inner { max-width: 1300px; margin: 0 auto; }
 
   .testimonials-grid {
     display: grid;
@@ -715,9 +682,7 @@
     margin-bottom: 1.5rem;
   }
 
-  .testimonial-text.large {
-    font-size: 1.25rem;
-  }
+  .testimonial-text.large { font-size: 1.25rem; }
 
   .testimonial-author {
     font-size: 0.65rem;
@@ -733,10 +698,7 @@
     margin-top: 0.2rem;
   }
 
-  /* Ways to work */
-  .ways-section {
-    border-top: 1px solid rgba(196, 96, 122, 0.1);
-  }
+  .ways-section { border-top: 1px solid rgba(196, 96, 122, 0.1); }
 
   .ways-grid {
     display: grid;
@@ -787,7 +749,6 @@
     color: var(--warm);
   }
 
-  /* Contact */
   .contact-section {
     border-top: 1px solid rgba(196, 96, 122, 0.1);
     text-align: center;
@@ -844,7 +805,6 @@
     border-color: rgba(196, 96, 122, 0.4);
   }
 
-  /* Footer */
   footer {
     border-top: 1px solid rgba(196, 96, 122, 0.1);
     padding: 2rem 3rem;
@@ -870,7 +830,6 @@
     text-transform: uppercase;
   }
 
-  /* Scroll reveal */
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -882,7 +841,6 @@
     transform: translateY(0);
   }
 
-  /* Responsive */
   @media (max-width: 1024px) {
     .hero-content { grid-template-columns: 1fr; gap: 3rem; }
     .about-grid { grid-template-columns: 1fr; gap: 3rem; }
@@ -913,7 +871,6 @@
 <div class="cursor" id="cursor"></div>
 <div class="cursor-trail" id="cursorTrail"></div>
 
-<!-- Nav -->
 <nav>
   <div class="nav-brand">Virtual <span>Sommiie</span></div>
   <ul class="nav-links">
@@ -925,7 +882,6 @@
   </ul>
 </nav>
 
-<!-- Hero -->
 <section class="hero">
   <div class="hero-bg"></div>
   <svg class="topo-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
@@ -940,10 +896,10 @@
 
   <div class="hero-content">
     <div class="hero-left">
-      <div class="hero-tag">Open to Remote — UK · US · Canada</div>
+      <div class="hero-tag">Open to Remote · UK · US · Canada</div>
       <h1 class="hero-name">Chisomeje<br><em>Obiefuna</em></h1>
-      <p class="hero-title">Operations Manager & Senior Virtual Assistant</p>
-      <p class="hero-desc">Your second brain for content, clients, admins and operations — so your business runs smoother without you carrying everything alone.</p>
+      <p class="hero-title">Operations Manager &amp; Senior Virtual Assistant</p>
+      <p class="hero-desc">Your second brain for content, clients, admins and operations so your business runs smoother without you carrying everything alone.</p>
       <div class="hero-cta">
         <a href="#contact" class="btn-primary">Let's Work Together</a>
         <a href="#work" class="btn-ghost">View My Work</a>
@@ -953,7 +909,7 @@
       <div class="hero-card">
         <div class="quote-mark">"</div>
         <p class="hero-quote">It's like you read my ADHD brain and made it make sense. You've made my digital life so much easier. I can't thank you enough.</p>
-        <p class="hero-quote-attr">— Client Testimonial</p>
+        <p class="hero-quote-attr">Client Testimonial</p>
         <div class="hero-stats">
           <div class="stat">
             <div class="stat-num">4+</div>
@@ -977,29 +933,28 @@
   </div>
 </section>
 
-<!-- About -->
 <section id="about" class="about-section reveal">
   <div class="section-label">About</div>
   <h2 class="section-heading">Not just support.<br><em>Operational intelligence.</em></h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>I'm Chisomeje — but most people find me through <strong>Virtual Sommiie</strong>. I'm an operations and administrative professional who has spent years building the backend systems that keep growing businesses moving.</p>
-      <p>My work spans content pipelines, CRM automations, launch execution, community management, and digital platform operations. I've supported coaches, agencies, and founders across the full spectrum — from the first client inquiry to a sold-out course launch.</p>
-      <p>What sets me apart is the way I think about structure. <strong>Before execution, I make sure expectations, priorities, and workflows are clear.</strong> Fast-moving environments don't intimidate me — they require systems. That's where I focus.</p>
+      <p>I'm Chisomeje, but most people find me through <strong>Virtual Sommiie</strong>. I'm an operations and administrative professional who has spent years building the backend systems that keep growing businesses moving.</p>
+      <p>My work spans content pipelines, CRM automations, launch execution, community management, and digital platform operations. I've supported coaches, agencies, and founders across the full spectrum, from the first client inquiry to a sold-out course launch.</p>
+      <p>What sets me apart is the way I think about structure. <strong>Before execution, I make sure expectations, priorities, and workflows are clear.</strong> Fast-moving environments don't intimidate me. They require systems. That's where I focus.</p>
       <p>I work remotely with clients and companies across the UK, US, and Canada, and I bring a high level of proactivity, professionalism, and attention to detail to every engagement.</p>
     </div>
     <div class="about-right">
       <div class="about-services">
         <div class="service-item">
-          <span class="service-name">Content & Marketing Operations</span>
+          <span class="service-name">Content &amp; Marketing Operations</span>
           <span class="service-arrow">→</span>
         </div>
         <div class="service-item">
-          <span class="service-name">Systems & Automations</span>
+          <span class="service-name">Systems &amp; Automations</span>
           <span class="service-arrow">→</span>
         </div>
         <div class="service-item">
-          <span class="service-name">Client & Launch Support</span>
+          <span class="service-name">Client &amp; Launch Support</span>
           <span class="service-arrow">→</span>
         </div>
         <div class="service-item">
@@ -1019,7 +974,6 @@
   </div>
 </section>
 
-<!-- Expertise -->
 <div class="expertise-section">
   <div class="expertise-inner">
     <div class="section-label reveal">Expertise</div>
@@ -1027,7 +981,7 @@
     <div class="expertise-grid">
       <div class="expertise-card reveal">
         <div class="expertise-icon">📊</div>
-        <div class="expertise-title">Content & Marketing Ops</div>
+        <div class="expertise-title">Content &amp; Marketing Ops</div>
         <ul class="expertise-list">
           <li>B2B content pipeline management</li>
           <li>Content structuring and repurposing</li>
@@ -1038,7 +992,7 @@
       </div>
       <div class="expertise-card reveal">
         <div class="expertise-icon">⚙️</div>
-        <div class="expertise-title">Systems & Automations</div>
+        <div class="expertise-title">Systems &amp; Automations</div>
         <ul class="expertise-list">
           <li>GoHighLevel lead tracking and workflows</li>
           <li>CRM management and lead nurturing</li>
@@ -1049,7 +1003,7 @@
       </div>
       <div class="expertise-card reveal">
         <div class="expertise-icon">🚀</div>
-        <div class="expertise-title">Client & Launch Support</div>
+        <div class="expertise-title">Client &amp; Launch Support</div>
         <ul class="expertise-list">
           <li>Client communication and inquiry handling</li>
           <li>Community management (Facebook, Kajabi)</li>
@@ -1073,7 +1027,6 @@
   </div>
 </div>
 
-<!-- Case Studies -->
 <section id="work" class="cases-section reveal">
   <div class="section-label">Selected Work</div>
   <h2 class="section-heading">What it looks like<br><em>in practice.</em></h2>
@@ -1082,9 +1035,9 @@
     <div class="case-card reveal">
       <div class="case-number">01</div>
       <div class="case-body-wrapper">
-        <div class="case-context">Marketing Agency — B2B Content Operations</div>
+        <div class="case-context">Marketing Agency · B2B Content Operations</div>
         <div class="case-title">Content Pipeline Overhaul for B2B Marketing Agency</div>
-        <p class="case-body">A marketing agency serving B2B clients needed structured backend operations to manage growing content volumes across blogs, social, and LinkedIn ads. I built and maintained their full content pipeline — structuring raw materials into formatted deliverables, coordinating scheduling and dispatch, and maintaining organised workflows with consistent deadline tracking. The result was a reliable, repeatable system that removed the founder from day-to-day content logistics entirely.</p>
+        <p class="case-body">A marketing agency serving B2B clients needed structured backend operations to manage growing content volumes across blogs, social, and LinkedIn ads. I built and maintained their full content pipeline, structuring raw materials into formatted deliverables, coordinating scheduling and dispatch, and maintaining organised workflows with consistent deadline tracking. The result was a reliable, repeatable system that removed the founder from day-to-day content logistics entirely.</p>
       </div>
       <div class="case-outcomes">
         <div class="outcome">
@@ -1105,7 +1058,7 @@
     <div class="case-card reveal">
       <div class="case-number">02</div>
       <div class="case-body-wrapper">
-        <div class="case-context">Digital Coach — Backend & Launch Execution</div>
+        <div class="case-context">Digital Coach · Backend &amp; Launch Execution</div>
         <div class="case-title">Full Backend Operations for Digital Course Business</div>
         <p class="case-body">A coach running digital programs, community platforms, and recurring workshops needed a reliable operator to handle everything behind the scenes. I managed GoHighLevel automations and lead tracking, maintained Kajabi course materials, handled client communications, coordinated community platforms, and supported multiple book and workshop launches. The client closed 5 course sales in a single campaign cycle, attributing it directly to improved targeting and follow-up execution.</p>
       </div>
@@ -1128,7 +1081,7 @@
     <div class="case-card reveal">
       <div class="case-number">03</div>
       <div class="case-body-wrapper">
-        <div class="case-context">Coaching Business — WordPress & Newsletter Operations</div>
+        <div class="case-context">Coaching Business · WordPress &amp; Newsletter Operations</div>
         <div class="case-title">Website Management and Content Operations for Coaching Brand</div>
         <p class="case-body">Provided ongoing website and content management for coaching businesses operating on WordPress. Responsibilities included maintaining and updating websites, building and structuring landing pages, publishing and formatting blog content, and managing subscriber newsletters. Built a consistent publishing rhythm that improved brand presence and reduced the founder's time spent on digital maintenance.</p>
       </div>
@@ -1151,9 +1104,8 @@
   </div>
 </section>
 
-<!-- Tools -->
 <section class="tools-section reveal">
-  <div class="section-label">Tools & Software</div>
+  <div class="section-label">Tools &amp; Software</div>
   <h2 class="section-heading">The tech stack.<br><em>All of it.</em></h2>
   <div class="tools-grid">
     <span class="tool-tag featured">GoHighLevel</span>
@@ -1187,7 +1139,6 @@
   <p style="margin-top: 2rem; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em;">Comfortable learning and integrating new tools as required.</p>
 </section>
 
-<!-- Testimonials -->
 <div class="testimonials-section" id="testimonials">
   <div class="testimonials-inner">
     <div class="section-label reveal">Testimonials</div>
@@ -1196,37 +1147,37 @@
 
       <div class="testimonial-card featured reveal">
         <div class="quote-mark">"</div>
-        <p class="testimonial-text large">I have the pleasure of working with Chisomeje as a virtual assistant in my company. She is not only easy and pleasant to work with, but she also brings a high level of professionalism and reliability. She is highly organised, proactive, and always ensures that tasks are handled efficiently. Her ability to streamline and facilitate work processes has made a noticeable difference in my business operations. Working with Chisomeje means things get done smoothly, on time, and with care — which gives me the space to focus on the bigger picture.</p>
+        <p class="testimonial-text large">I have the pleasure of working with Chisomeje as a virtual assistant in my company. She is not only easy and pleasant to work with, but she also brings a high level of professionalism and reliability. She is highly organised, proactive, and always ensures that tasks are handled efficiently. Her ability to streamline and facilitate work processes has made a noticeable difference in my business operations. Working with Chisomeje means things get done smoothly, on time, and with care, which gives me the space to focus on the bigger picture.</p>
         <p class="testimonial-author">Desi Cherkezova</p>
-        <p class="testimonial-role">Founder — Brand Presence & LinkedIn Graphics</p>
+        <p class="testimonial-role">Founder · Brand Presence &amp; LinkedIn Graphics</p>
       </div>
 
       <div class="testimonial-card reveal">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">She is a talented young woman who would be an asset to any business. Every task assigned to her is completed promptly. She readily accepts feedback and makes swift progress. If she is unfamiliar with an app, she takes the initiative to research and learn it quickly.</p>
         <p class="testimonial-author">Bita Roshandoony, CPCC</p>
-        <p class="testimonial-role">Business Mindset Coach — LinkedIn Recommendation</p>
+        <p class="testimonial-role">Business Mindset Coach · LinkedIn Recommendation</p>
       </div>
 
       <div class="testimonial-card reveal">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">Chisomeje is a DREAM to work with. Gets everything done, communicates quickly, and a lot of attention to detail. She helped me SO much while I prepared for maternity leave. 10/10.</p>
         <p class="testimonial-author">Verified Client</p>
-        <p class="testimonial-role">Upwork — 5.0 Rating</p>
+        <p class="testimonial-role">Upwork · 5.0 Rating</p>
       </div>
 
       <div class="testimonial-card reveal">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">She's fantastic at being prepared and organised, which is crucial for achieving your goals and reducing stress. Chisomeje's dedication to planning ahead ensures smooth operations and top-notch results. "Rocking up" and hoping for the best isn't her style.</p>
         <p class="testimonial-author">Client Recommendation</p>
-        <p class="testimonial-role">VA & Operations Support</p>
+        <p class="testimonial-role">VA &amp; Operations Support</p>
       </div>
 
       <div class="testimonial-card reveal">
         <div class="quote-mark">"</div>
         <p class="testimonial-text">It's like you read my ADHD brain and made it make sense. You've made my digital life so much easier. I can't thank you enough.</p>
         <p class="testimonial-author">Digital Client</p>
-        <p class="testimonial-role">Coaching & Content Operations</p>
+        <p class="testimonial-role">Coaching &amp; Content Operations</p>
       </div>
 
       <div class="testimonial-card reveal">
@@ -1240,57 +1191,48 @@
   </div>
 </div>
 
-<!-- Ways to Work -->
 <section class="ways-section reveal">
   <div class="section-label">Engagement Models</div>
   <h2 class="section-heading">Three ways<br><em>to work together.</em></h2>
   <div class="ways-grid">
     <div class="way-card reveal">
-      <div class="way-number">01 — Ongoing</div>
+      <div class="way-number">01 · Ongoing</div>
       <div class="way-title">Ongoing Operational Support</div>
       <p class="way-desc">For founders and coaches who need consistent backend management and structured operational support on a retainer basis. We build the systems and then keep them running.</p>
     </div>
     <div class="way-card reveal">
-      <div class="way-number">02 — Project</div>
+      <div class="way-number">02 · Project</div>
       <div class="way-title">Project or Launch Support</div>
       <p class="way-desc">For specific launches, content cycles, or system setups that require focused, time-bound execution. Ideal for course launches, book launches, or quarterly campaigns.</p>
     </div>
     <div class="way-card reveal">
-      <div class="way-number">03 — Intensive</div>
+      <div class="way-number">03 · Intensive</div>
       <div class="way-title">VIP Implementation Days</div>
       <p class="way-desc">Intensive, short-term support for system cleanup, workflow structuring, or content organisation. Get more done in one focused day than weeks of back-and-forth.</p>
     </div>
   </div>
 </section>
 
-<!-- Contact -->
 <section id="contact" class="contact-section reveal">
   <div class="section-label" style="justify-content: center;">Contact</div>
   <div class="contact-heading">
     Let's build something<br><em>that actually works.</em>
   </div>
-  <p class="contact-sub">If you're building something serious and need operational and admin support that keeps everything moving smoothly — let's connect.</p>
+  <p class="contact-sub">If you're building something serious and need operational and admin support that keeps everything moving smoothly, let's connect.</p>
   <div class="contact-links">
-    <a href="mailto:Sommiieva@gmail.com" class="contact-link">
-      ✉ Sommiieva@gmail.com
-    </a>
-    <a href="https://www.linkedin.com/in/sommiieva/" target="_blank" class="contact-link">
-      in Chisomeje Obiefuna
-    </a>
-    <a href="https://instagram.com/virtual.sommiie" target="_blank" class="contact-link">
-      ◎ Virtual.sommiie
-    </a>
+    <a href="mailto:Sommiieva@gmail.com" class="contact-link">✉ Sommiieva@gmail.com</a>
+    <a href="https://www.linkedin.com/in/sommiieva/" target="_blank" class="contact-link">in Chisomeje Obiefuna</a>
+    <a href="https://instagram.com/virtual.sommiie" target="_blank" class="contact-link">◎ Virtual.sommiie</a>
     <a href="#contact" class="btn-primary">Book a Discovery Call</a>
   </div>
 </section>
 
 <footer>
   <div class="footer-brand">Virtual <span style="color: var(--blush);">Sommiie</span></div>
-  <div class="footer-copy">© 2026 Chisomeje Obiefuna — Open to remote roles globally</div>
+  <div class="footer-copy">© 2026 Chisomeje Obiefuna · Open to remote roles globally</div>
 </footer>
 
 <script>
-  // Custom cursor
   const cursor = document.getElementById('cursor');
   const trail = document.getElementById('cursorTrail');
   let mx = 0, my = 0, tx = 0, ty = 0;
@@ -1321,23 +1263,18 @@
     });
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
-    entries.forEach((entry, i) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, 100);
+        setTimeout(() => entry.target.classList.add('visible'), 100);
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // Stagger children reveals
   document.querySelectorAll('.expertise-grid, .cases-grid, .testimonials-grid, .ways-grid').forEach(grid => {
-    const children = grid.querySelectorAll('.reveal');
-    children.forEach((child, i) => {
+    grid.querySelectorAll('.reveal').forEach((child, i) => {
       child.style.transitionDelay = (i * 0.1) + 's';
     });
   });
