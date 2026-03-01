@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Virtual Sommiie — Chisomeje Obiefuna</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --plum: #2D0A1F;
+    --deep: #1A0512;
+    --rose: #8B2252;
+    --blush: #C4607A;
+    --cream: #F5EDE8;
+    --warm: #EDD9CC;
+    --gold: #C49A6C;
+    --text: #F0E4DD;
+    --muted: #9E7A8A;
+  }
+
+- { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+background: var(–deep);
+color: var(–text);
+font-family: ‘DM Mono’, monospace;
+overflow-x: hidden;
+cursor: none;
+}
+
+/* Custom cursor */
+.cursor {
+width: 12px; height: 12px;
+background: var(–blush);
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 9999;
+transition: transform 0.15s ease, background 0.2s;
+transform: translate(-50%, -50%);
+}
+.cursor-trail {
+width: 32px; height: 32px;
+border: 1px solid var(–blush);
+border-radius: 50%;
+position: fixed;
+pointer-events: none;
+z-index: 9998;
+transition: transform 0.4s ease, opacity 0.3s;
+transform: translate(-50%, -50%);
+opacity: 0.4;
+}
+
+/* Nav */
+nav {
+position: fixed; top: 0; left: 0; right: 0;
+z-index: 100;
+padding: 1.5rem 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+backdrop-filter: blur(12px);
+background: rgba(26, 5, 18, 0.7);
+border-bottom: 1px solid rgba(196, 96, 122, 0.15);
+}
+
+.nav-brand {
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+font-size: 1.1rem;
+letter-spacing: 0.05em;
+color: var(–cream);
+}
+
+.nav-brand span { color: var(–blush); }
+
+.nav-links {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+}
+
+.nav-links a {
+color: var(–muted);
+text-decoration: none;
+font-size: 0.7rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+transition: color 0.3s;
+}
+
+.nav-links a:hover { color: var(–blush); }
+
+/* Hero */
+.hero {
+min-height: 100vh;
+display: flex;
+align-items: center;
+position: relative;
+padding: 8rem 3rem 4rem;
+overflow: hidden;
+}
+
+.hero-bg {
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 60% 50% at 80% 50%, rgba(139, 34, 82, 0.25) 0%, transparent 70%),
+radial-gradient(ellipse 40% 60% at 10% 80%, rgba(45, 10, 31, 0.8) 0%, transparent 60%);
+}
+
+/* Topographic lines */
+.topo-svg {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+opacity: 0.06;
+}
+
+.hero-content {
+position: relative;
+z-index: 2;
+max-width: 1300px;
+margin: 0 auto;
+width: 100%;
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 4rem;
+align-items: center;
+}
+
+.hero-left { }
+
+.hero-tag {
+display: inline-flex;
+align-items: center;
+gap: 0.5rem;
+background: rgba(196, 96, 122, 0.15);
+border: 1px solid rgba(196, 96, 122, 0.3);
+padding: 0.4rem 1rem;
+border-radius: 100px;
+font-size: 0.65rem;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(–blush);
+margin-bottom: 2rem;
+animation: fadeUp 0.8s ease forwards;
+opacity: 0;
+}
+
+.hero-tag::before {
+content: ‘’;
+width: 6px; height: 6px;
+background: var(–blush);
+border-radius: 50%;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0%, 100% { opacity: 1; transform: scale(1); }
+50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.hero-name {
+font-family: ‘Cormorant Garamond’, serif;
+font-weight: 300;
+font-size: clamp(3.5rem, 6vw, 6rem);
+line-height: 1.0;
+letter-spacing: -0.02em;
+color: var(–cream);
+animation: fadeUp 0.8s 0.2s ease forwards;
+opacity: 0;
+}
+
+.hero-name em {
+font-style: italic;
+color: var(–blush);
+}
+
+.hero-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 0.75rem;
+font-weight: 600;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–gold);
+margin: 1.5rem 0 2rem;
+animation: fadeUp 0.8s 0.4s ease forwards;
+opacity: 0;
+}
+
+.hero-desc {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.3rem;
+font-weight: 300;
+line-height: 1.7;
+color: var(–warm);
+max-width: 520px;
+animation: fadeUp 0.8s 0.6s ease forwards;
+opacity: 0;
+}
+
+.hero-cta {
+display: flex;
+gap: 1rem;
+margin-top: 3rem;
+animation: fadeUp 0.8s 0.8s ease forwards;
+opacity: 0;
+}
+
+.btn-primary {
+background: var(–blush);
+color: var(–deep);
+padding: 0.9rem 2rem;
+border-radius: 3px;
+text-decoration: none;
+font-size: 0.7rem;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+transition: all 0.3s;
+font-family: ‘DM Mono’, monospace;
+}
+
+.btn-primary:hover {
+background: var(–cream);
+transform: translateY(-2px);
+}
+
+.btn-ghost {
+border: 1px solid rgba(196, 96, 122, 0.4);
+color: var(–blush);
+padding: 0.9rem 2rem;
+border-radius: 3px;
+text-decoration: none;
+font-size: 0.7rem;
+font-weight: 500;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+transition: all 0.3s;
+font-family: ‘DM Mono’, monospace;
+}
+
+.btn-ghost:hover {
+border-color: var(–blush);
+background: rgba(196, 96, 122, 0.1);
+transform: translateY(-2px);
+}
+
+.hero-right {
+animation: fadeUp 0.8s 0.3s ease forwards;
+opacity: 0;
+}
+
+.hero-card {
+background: rgba(45, 10, 31, 0.6);
+border: 1px solid rgba(196, 96, 122, 0.2);
+border-radius: 8px;
+padding: 2.5rem;
+backdrop-filter: blur(10px);
+position: relative;
+overflow: hidden;
+}
+
+.hero-card::before {
+content: ‘’;
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, transparent, var(–blush), transparent);
+}
+
+.hero-quote {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-style: italic;
+font-weight: 300;
+line-height: 1.8;
+color: var(–warm);
+margin-bottom: 1.5rem;
+}
+
+.hero-quote-attr {
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–blush);
+}
+
+.hero-stats {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 1rem;
+margin-top: 2rem;
+padding-top: 2rem;
+border-top: 1px solid rgba(196, 96, 122, 0.15);
+}
+
+.stat {
+text-align: center;
+}
+
+.stat-num {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 2.5rem;
+font-weight: 600;
+color: var(–blush);
+line-height: 1;
+}
+
+.stat-label {
+font-size: 0.6rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 0.3rem;
+}
+
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(24px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* Sections common */
+section {
+padding: 7rem 3rem;
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.section-label {
+font-size: 0.65rem;
+letter-spacing: 0.25em;
+text-transform: uppercase;
+color: var(–blush);
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 1rem;
+}
+
+.section-label::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: rgba(196, 96, 122, 0.25);
+max-width: 60px;
+}
+
+.section-heading {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.5rem, 4vw, 3.8rem);
+font-weight: 300;
+line-height: 1.1;
+color: var(–cream);
+margin-bottom: 1rem;
+}
+
+.section-heading em {
+font-style: italic;
+color: var(–blush);
+}
+
+/* About */
+.about-section {
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+}
+
+.about-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 6rem;
+align-items: start;
+margin-top: 4rem;
+}
+
+.about-text p {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-weight: 300;
+line-height: 1.9;
+color: var(–warm);
+margin-bottom: 1.5rem;
+}
+
+.about-text p strong {
+color: var(–cream);
+font-weight: 600;
+}
+
+.about-right { }
+
+.about-services {
+display: flex;
+flex-direction: column;
+gap: 1px;
+}
+
+.service-item {
+background: rgba(45, 10, 31, 0.5);
+border: 1px solid rgba(196, 96, 122, 0.15);
+padding: 1.5rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+transition: all 0.3s;
+cursor: pointer;
+}
+
+.service-item:hover {
+background: rgba(139, 34, 82, 0.2);
+border-color: rgba(196, 96, 122, 0.4);
+padding-left: 2.5rem;
+}
+
+.service-name {
+font-family: ‘Syne’, sans-serif;
+font-size: 0.85rem;
+font-weight: 600;
+color: var(–cream);
+letter-spacing: 0.05em;
+}
+
+.service-arrow {
+color: var(–blush);
+font-size: 1.2rem;
+transition: transform 0.3s;
+}
+
+.service-item:hover .service-arrow { transform: translateX(4px); }
+
+/* Expertise grid */
+.expertise-section {
+background: rgba(45, 10, 31, 0.3);
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+border-bottom: 1px solid rgba(196, 96, 122, 0.1);
+max-width: 100%;
+padding: 7rem 3rem;
+}
+
+.expertise-inner {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.expertise-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 1.5rem;
+margin-top: 4rem;
+}
+
+.expertise-card {
+background: rgba(26, 5, 18, 0.8);
+border: 1px solid rgba(196, 96, 122, 0.15);
+border-radius: 6px;
+padding: 2rem;
+transition: all 0.4s;
+position: relative;
+overflow: hidden;
+}
+
+.expertise-card::after {
+content: ‘’;
+position: absolute;
+bottom: 0; left: 0; right: 0;
+height: 2px;
+background: linear-gradient(90deg, var(–blush), var(–rose));
+transform: scaleX(0);
+transition: transform 0.4s;
+}
+
+.expertise-card:hover {
+border-color: rgba(196, 96, 122, 0.4);
+transform: translateY(-4px);
+}
+
+.expertise-card:hover::after { transform: scaleX(1); }
+
+.expertise-icon {
+font-size: 1.8rem;
+margin-bottom: 1.2rem;
+}
+
+.expertise-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 0.8rem;
+font-weight: 700;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–blush);
+margin-bottom: 1.2rem;
+}
+
+.expertise-list {
+list-style: none;
+display: flex;
+flex-direction: column;
+gap: 0.6rem;
+}
+
+.expertise-list li {
+font-size: 0.72rem;
+color: var(–muted);
+line-height: 1.5;
+padding-left: 1rem;
+position: relative;
+transition: color 0.2s;
+}
+
+.expertise-list li::before {
+content: ‘—’;
+position: absolute;
+left: 0;
+color: var(–rose);
+font-size: 0.6rem;
+}
+
+.expertise-card:hover .expertise-list li { color: var(–warm); }
+
+/* Case studies */
+.cases-section {
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+}
+
+.cases-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 2rem;
+margin-top: 4rem;
+}
+
+.case-card {
+background: rgba(45, 10, 31, 0.5);
+border: 1px solid rgba(196, 96, 122, 0.15);
+border-radius: 8px;
+padding: 3rem;
+display: grid;
+grid-template-columns: 1fr 2fr 1fr;
+gap: 3rem;
+align-items: start;
+transition: all 0.4s;
+position: relative;
+overflow: hidden;
+}
+
+.case-card::before {
+content: ‘’;
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 3px;
+background: linear-gradient(180deg, var(–blush), var(–rose));
+transform: scaleY(0);
+transition: transform 0.4s;
+transform-origin: top;
+}
+
+.case-card:hover { border-color: rgba(196, 96, 122, 0.35); }
+.case-card:hover::before { transform: scaleY(1); }
+
+.case-number {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 4rem;
+font-weight: 300;
+color: rgba(196, 96, 122, 0.2);
+line-height: 1;
+}
+
+.case-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 1rem;
+font-weight: 700;
+color: var(–cream);
+margin-bottom: 0.5rem;
+letter-spacing: 0.03em;
+}
+
+.case-context {
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–blush);
+margin-bottom: 1.2rem;
+}
+
+.case-body {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.05rem;
+font-weight: 300;
+line-height: 1.8;
+color: var(–warm);
+}
+
+.case-outcomes {
+display: flex;
+flex-direction: column;
+gap: 1rem;
+}
+
+.outcome {
+text-align: right;
+}
+
+.outcome-val {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.8rem;
+font-weight: 600;
+color: var(–blush);
+line-height: 1;
+}
+
+.outcome-desc {
+font-size: 0.62rem;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(–muted);
+margin-top: 0.2rem;
+}
+
+/* Tools */
+.tools-section {
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+}
+
+.tools-grid {
+display: flex;
+flex-wrap: wrap;
+gap: 0.8rem;
+margin-top: 3rem;
+}
+
+.tool-tag {
+background: rgba(45, 10, 31, 0.7);
+border: 1px solid rgba(196, 96, 122, 0.2);
+color: var(–warm);
+padding: 0.5rem 1.2rem;
+border-radius: 100px;
+font-size: 0.7rem;
+letter-spacing: 0.08em;
+transition: all 0.3s;
+white-space: nowrap;
+}
+
+.tool-tag:hover {
+background: rgba(139, 34, 82, 0.3);
+border-color: var(–blush);
+color: var(–cream);
+transform: translateY(-2px);
+}
+
+.tool-tag.featured {
+background: rgba(139, 34, 82, 0.25);
+border-color: rgba(196, 96, 122, 0.4);
+color: var(–blush);
+}
+
+/* Testimonials */
+.testimonials-section {
+background: rgba(45, 10, 31, 0.3);
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+max-width: 100%;
+padding: 7rem 3rem;
+}
+
+.testimonials-inner {
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.testimonials-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 4rem;
+}
+
+.testimonial-card {
+background: rgba(26, 5, 18, 0.7);
+border: 1px solid rgba(196, 96, 122, 0.15);
+border-radius: 8px;
+padding: 2.5rem;
+position: relative;
+transition: all 0.4s;
+}
+
+.testimonial-card:hover {
+border-color: rgba(196, 96, 122, 0.35);
+transform: translateY(-4px);
+}
+
+.testimonial-card.featured {
+grid-column: span 2;
+background: rgba(45, 10, 31, 0.8);
+border-color: rgba(196, 96, 122, 0.3);
+}
+
+.quote-mark {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 5rem;
+line-height: 0.5;
+color: rgba(196, 96, 122, 0.2);
+margin-bottom: 1rem;
+}
+
+.testimonial-text {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.1rem;
+font-weight: 300;
+font-style: italic;
+line-height: 1.8;
+color: var(–warm);
+margin-bottom: 1.5rem;
+}
+
+.testimonial-text.large {
+font-size: 1.25rem;
+}
+
+.testimonial-author {
+font-size: 0.65rem;
+letter-spacing: 0.15em;
+text-transform: uppercase;
+color: var(–blush);
+}
+
+.testimonial-role {
+font-size: 0.6rem;
+letter-spacing: 0.1em;
+color: var(–muted);
+margin-top: 0.2rem;
+}
+
+/* Ways to work */
+.ways-section {
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+}
+
+.ways-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 1.5rem;
+margin-top: 4rem;
+}
+
+.way-card {
+border: 1px solid rgba(196, 96, 122, 0.15);
+border-radius: 8px;
+padding: 2.5rem;
+position: relative;
+overflow: hidden;
+transition: all 0.4s;
+background: rgba(26, 5, 18, 0.5);
+}
+
+.way-card:hover {
+border-color: rgba(196, 96, 122, 0.4);
+background: rgba(45, 10, 31, 0.8);
+transform: translateY(-4px);
+}
+
+.way-number {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 0.7rem;
+letter-spacing: 0.2em;
+color: var(–blush);
+text-transform: uppercase;
+margin-bottom: 1.5rem;
+}
+
+.way-title {
+font-family: ‘Syne’, sans-serif;
+font-size: 1.1rem;
+font-weight: 700;
+color: var(–cream);
+margin-bottom: 1rem;
+line-height: 1.3;
+}
+
+.way-desc {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1rem;
+font-weight: 300;
+line-height: 1.8;
+color: var(–warm);
+}
+
+/* Contact */
+.contact-section {
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+text-align: center;
+}
+
+.contact-heading {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: clamp(2.5rem, 5vw, 5rem);
+font-weight: 300;
+line-height: 1.1;
+color: var(–cream);
+margin: 2rem 0;
+}
+
+.contact-heading em {
+font-style: italic;
+color: var(–blush);
+}
+
+.contact-sub {
+font-family: ‘Cormorant Garamond’, serif;
+font-size: 1.2rem;
+font-weight: 300;
+color: var(–warm);
+max-width: 500px;
+margin: 0 auto 3rem;
+line-height: 1.7;
+}
+
+.contact-links {
+display: flex;
+justify-content: center;
+gap: 1.5rem;
+flex-wrap: wrap;
+margin-bottom: 4rem;
+}
+
+.contact-link {
+display: flex;
+align-items: center;
+gap: 0.6rem;
+color: var(–muted);
+text-decoration: none;
+font-size: 0.7rem;
+letter-spacing: 0.1em;
+transition: color 0.3s;
+padding: 0.8rem 1.5rem;
+border: 1px solid rgba(196, 96, 122, 0.15);
+border-radius: 3px;
+}
+
+.contact-link:hover {
+color: var(–blush);
+border-color: rgba(196, 96, 122, 0.4);
+}
+
+/* Footer */
+footer {
+border-top: 1px solid rgba(196, 96, 122, 0.1);
+padding: 2rem 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1300px;
+margin: 0 auto;
+}
+
+.footer-brand {
+font-family: ‘Syne’, sans-serif;
+font-weight: 800;
+font-size: 0.85rem;
+color: var(–muted);
+letter-spacing: 0.05em;
+}
+
+.footer-copy {
+font-size: 0.6rem;
+letter-spacing: 0.1em;
+color: rgba(158, 122, 138, 0.5);
+text-transform: uppercase;
+}
+
+/* Scroll reveal */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s ease;
+}
+
+.reveal.visible {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+.hero-content { grid-template-columns: 1fr; gap: 3rem; }
+.about-grid { grid-template-columns: 1fr; gap: 3rem; }
+.expertise-grid { grid-template-columns: repeat(2, 1fr); }
+.case-card { grid-template-columns: 1fr; gap: 1.5rem; }
+.case-number { font-size: 2.5rem; }
+.case-outcomes { flex-direction: row; justify-content: flex-start; }
+.outcome { text-align: left; }
+.testimonials-grid { grid-template-columns: 1fr; }
+.testimonial-card.featured { grid-column: span 1; }
+.ways-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+nav { padding: 1.2rem 1.5rem; }
+.nav-links { display: none; }
+section { padding: 5rem 1.5rem; }
+.expertise-grid { grid-template-columns: 1fr; }
+footer { flex-direction: column; gap: 1rem; text-align: center; }
+.hero { padding: 7rem 1.5rem 3rem; }
+body { cursor: auto; }
+.cursor, .cursor-trail { display: none; }
+}
+</style>
+
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursorTrail"></div>
+
+<!-- Nav -->
+
+<nav>
+  <div class="nav-brand">Virtual <span>Sommiie</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <svg class="topo-svg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <path d="M0,400 Q200,350 400,380 T800,360 T1200,340 T1440,380" fill="none" stroke="#C4607A" stroke-width="1"/>
+    <path d="M0,450 Q250,400 450,430 T850,410 T1250,390 T1440,430" fill="none" stroke="#C4607A" stroke-width="1"/>
+    <path d="M0,500 Q300,460 500,480 T900,460 T1300,440 T1440,480" fill="none" stroke="#C4607A" stroke-width="1"/>
+    <path d="M0,350 Q150,310 350,330 T750,310 T1150,290 T1440,330" fill="none" stroke="#C4607A" stroke-width="1"/>
+    <path d="M0,550 Q350,510 550,530 T950,510 T1350,490 T1440,530" fill="none" stroke="#C4607A" stroke-width="1"/>
+    <path d="M0,300 Q100,270 300,280 T700,260 T1100,240 T1440,280" fill="none" stroke="#C4607A" stroke-width="0.5"/>
+    <path d="M0,600 Q400,560 600,580 T1000,560 T1400,540 T1440,580" fill="none" stroke="#C4607A" stroke-width="0.5"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-left">
+      <div class="hero-tag">Open to Remote — UK · US · Canada</div>
+      <h1 class="hero-name">Chisomeje<br><em>Obiefuna</em></h1>
+      <p class="hero-title">Operations Manager & Senior Virtual Assistant</p>
+      <p class="hero-desc">Your second brain for content, clients, admins and operations — so your business runs smoother without you carrying everything alone.</p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Let's Work Together</a>
+        <a href="#work" class="btn-ghost">View My Work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card">
+        <div class="quote-mark">"</div>
+        <p class="hero-quote">It's like you read my ADHD brain and made it make sense. You've made my digital life so much easier. I can't thank you enough.</p>
+        <p class="hero-quote-attr">— Client Testimonial</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">4+</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">5★</div>
+            <div class="stat-label">Client Rating</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">20+</div>
+            <div class="stat-label">Tools Mastered</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Ways to Engage</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About -->
+
+<section id="about" class="about-section reveal">
+  <div class="section-label">About</div>
+  <h2 class="section-heading">Not just support.<br><em>Operational intelligence.</em></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm Chisomeje — but most people find me through <strong>Virtual Sommiie</strong>. I'm an operations and administrative professional who has spent years building the backend systems that keep growing businesses moving.</p>
+      <p>My work spans content pipelines, CRM automations, launch execution, community management, and digital platform operations. I've supported coaches, agencies, and founders across the full spectrum — from the first client inquiry to a sold-out course launch.</p>
+      <p>What sets me apart is the way I think about structure. <strong>Before execution, I make sure expectations, priorities, and workflows are clear.</strong> Fast-moving environments don't intimidate me — they require systems. That's where I focus.</p>
+      <p>I work remotely with clients and companies across the UK, US, and Canada, and I bring a high level of proactivity, professionalism, and attention to detail to every engagement.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-services">
+        <div class="service-item">
+          <span class="service-name">Content & Marketing Operations</span>
+          <span class="service-arrow">→</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Systems & Automations</span>
+          <span class="service-arrow">→</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Client & Launch Support</span>
+          <span class="service-arrow">→</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Administrative Operations</span>
+          <span class="service-arrow">→</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Community Management</span>
+          <span class="service-arrow">→</span>
+        </div>
+        <div class="service-item">
+          <span class="service-name">Head of Operations Support</span>
+          <span class="service-arrow">→</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Expertise -->
+
+<div class="expertise-section">
+  <div class="expertise-inner">
+    <div class="section-label reveal">Expertise</div>
+    <h2 class="section-heading reveal">Four pillars.<br><em>One seamless backend.</em></h2>
+    <div class="expertise-grid">
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">📊</div>
+        <div class="expertise-title">Content & Marketing Ops</div>
+        <ul class="expertise-list">
+          <li>B2B content pipeline management</li>
+          <li>Content structuring and repurposing</li>
+          <li>Scheduling and dispatch coordination</li>
+          <li>LinkedIn management and ads execution</li>
+          <li>Deadline tracking and quality control</li>
+        </ul>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">⚙️</div>
+        <div class="expertise-title">Systems & Automations</div>
+        <ul class="expertise-list">
+          <li>GoHighLevel lead tracking and workflows</li>
+          <li>CRM management and lead nurturing</li>
+          <li>Kajabi course and backend management</li>
+          <li>Zapier automation builds</li>
+          <li>Workflow design across PM tools</li>
+        </ul>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">🚀</div>
+        <div class="expertise-title">Client & Launch Support</div>
+        <ul class="expertise-list">
+          <li>Client communication and inquiry handling</li>
+          <li>Community management (Facebook, Kajabi)</li>
+          <li>Workshop and book launch execution</li>
+          <li>Lead follow-ups and onboarding</li>
+          <li>Invoice tracking and payment follow-ups</li>
+        </ul>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="expertise-icon">🗂️</div>
+        <div class="expertise-title">Administrative Operations</div>
+        <ul class="expertise-list">
+          <li>Calendar and schedule management</li>
+          <li>Inbox organisation and correspondence</li>
+          <li>Document formatting and presentation prep</li>
+          <li>Data entry and database management</li>
+          <li>Research and internal coordination</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Case Studies -->
+
+<section id="work" class="cases-section reveal">
+  <div class="section-label">Selected Work</div>
+  <h2 class="section-heading">What it looks like<br><em>in practice.</em></h2>
+  <div class="cases-grid">
+
+```
+<div class="case-card reveal">
+  <div class="case-number">01</div>
+  <div class="case-body-wrapper">
+    <div class="case-context">Marketing Agency — B2B Content Operations</div>
+    <div class="case-title">Content Pipeline Overhaul for B2B Marketing Agency</div>
+    <p class="case-body">A marketing agency serving B2B clients needed structured backend operations to manage growing content volumes across blogs, social, and LinkedIn ads. I built and maintained their full content pipeline — structuring raw materials into formatted deliverables, coordinating scheduling and dispatch, and maintaining organised workflows with consistent deadline tracking. The result was a reliable, repeatable system that removed the founder from day-to-day content logistics entirely.</p>
+  </div>
+  <div class="case-outcomes">
+    <div class="outcome">
+      <div class="outcome-val">100%</div>
+      <div class="outcome-desc">On-time delivery</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-val">0</div>
+      <div class="outcome-desc">Missed deadlines</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-val">3+</div>
+      <div class="outcome-desc">Channels managed</div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card reveal">
+  <div class="case-number">02</div>
+  <div class="case-body-wrapper">
+    <div class="case-context">Digital Coach — Backend & Launch Execution</div>
+    <div class="case-title">Full Backend Operations for Digital Course Business</div>
+    <p class="case-body">A coach running digital programs, community platforms, and recurring workshops needed a reliable operator to handle everything behind the scenes. I managed GoHighLevel automations and lead tracking, maintained Kajabi course materials, handled client communications, coordinated community platforms, and supported multiple book and workshop launches. The client closed 5 course sales in a single campaign cycle, attributing it directly to improved targeting and follow-up execution.</p>
+  </div>
+  <div class="case-outcomes">
+    <div class="outcome">
+      <div class="outcome-val">5</div>
+      <div class="outcome-desc">Course sales closed</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-val">5★</div>
+      <div class="outcome-desc">Client satisfaction</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-val">2+</div>
+      <div class="outcome-desc">Launches supported</div>
+    </div>
+  </div>
+</div>
+
+<div class="case-card reveal">
+  <div class="case-number">03</div>
+  <div class="case-body-wrapper">
+    <div class="case-context">Coaching Business — WordPress & Newsletter Operations</div>
+    <div class="case-title">Website Management and Content Operations for Coaching Brand</div>
+    <p class="case-body">Provided ongoing website and content management for coaching businesses operating on WordPress. Responsibilities included maintaining and updating websites, building and structuring landing pages, publishing and formatting blog content, and managing subscriber newsletters. Built a consistent publishing rhythm that improved brand presence and reduced the founder's time spent on digital maintenance.</p>
+  </div>
+  <div class="case-outcomes">
+    <div class="outcome">
+      <div class="outcome-val">✓</div>
+      <div class="outcome-desc">Systems built</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-val">↓</div>
+      <div class="outcome-desc">Founder hours freed</div>
+    </div>
+    <div class="outcome">
+      <div class="outcome-val">↑</div>
+      <div class="outcome-desc">Content consistency</div>
+    </div>
+  </div>
+</div>
+```
+
+  </div>
+</section>
+
+<!-- Tools -->
+
+<section class="tools-section reveal">
+  <div class="section-label">Tools & Software</div>
+  <h2 class="section-heading">The tech stack.<br><em>All of it.</em></h2>
+  <div class="tools-grid">
+    <span class="tool-tag featured">GoHighLevel</span>
+    <span class="tool-tag featured">Kajabi</span>
+    <span class="tool-tag featured">Zapier</span>
+    <span class="tool-tag featured">Asana</span>
+    <span class="tool-tag featured">Notion</span>
+    <span class="tool-tag featured">Klaviyo</span>
+    <span class="tool-tag">Trello</span>
+    <span class="tool-tag">Monday.com</span>
+    <span class="tool-tag">Slack</span>
+    <span class="tool-tag">Microsoft Teams</span>
+    <span class="tool-tag">Zoom</span>
+    <span class="tool-tag">Zendesk</span>
+    <span class="tool-tag">WordPress</span>
+    <span class="tool-tag">Wix</span>
+    <span class="tool-tag">Calendly</span>
+    <span class="tool-tag">Google Workspace</span>
+    <span class="tool-tag">Microsoft 365</span>
+    <span class="tool-tag">Canva</span>
+    <span class="tool-tag">Loom</span>
+    <span class="tool-tag">LinkedIn Ads</span>
+    <span class="tool-tag">Dropbox</span>
+    <span class="tool-tag">OpenAI / ChatGPT</span>
+    <span class="tool-tag">Facebook Groups</span>
+    <span class="tool-tag">Instagram</span>
+    <span class="tool-tag">Microsoft Project</span>
+    <span class="tool-tag">ConvertKit</span>
+    <span class="tool-tag">Squarespace</span>
+  </div>
+  <p style="margin-top: 2rem; font-size: 0.7rem; color: var(--muted); letter-spacing: 0.08em;">Comfortable learning and integrating new tools as required.</p>
+</section>
+
+<!-- Testimonials -->
+
+<div class="testimonials-section" id="testimonials">
+  <div class="testimonials-inner">
+    <div class="section-label reveal">Testimonials</div>
+    <h2 class="section-heading reveal">In their<br><em>own words.</em></h2>
+    <div class="testimonials-grid">
+
+```
+  <div class="testimonial-card featured reveal">
+    <div class="quote-mark">"</div>
+    <p class="testimonial-text large">I have the pleasure of working with Chisomeje as a virtual assistant in my company. She is not only easy and pleasant to work with, but she also brings a high level of professionalism and reliability. She is highly organised, proactive, and always ensures that tasks are handled efficiently. Her ability to streamline and facilitate work processes has made a noticeable difference in my business operations. Working with Chisomeje means things get done smoothly, on time, and with care — which gives me the space to focus on the bigger picture.</p>
+    <p class="testimonial-author">Desi Cherkezova</p>
+    <p class="testimonial-role">Founder — Brand Presence & LinkedIn Graphics</p>
+  </div>
+
+  <div class="testimonial-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testimonial-text">She is a talented young woman who would be an asset to any business. Every task assigned to her is completed promptly. She readily accepts feedback and makes swift progress. If she is unfamiliar with an app, she takes the initiative to research and learn it quickly.</p>
+    <p class="testimonial-author">Bita Roshandoony, CPCC</p>
+    <p class="testimonial-role">Business Mindset Coach — LinkedIn Recommendation</p>
+  </div>
+
+  <div class="testimonial-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testimonial-text">Chisomeje is a DREAM to work with. Gets everything done, communicates quickly, and a lot of attention to detail. She helped me SO much while I prepared for maternity leave. 10/10.</p>
+    <p class="testimonial-author">Verified Client</p>
+    <p class="testimonial-role">Upwork — 5.0 Rating</p>
+  </div>
+
+  <div class="testimonial-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testimonial-text">She's fantastic at being prepared and organised, which is crucial for achieving your goals and reducing stress. Chisomeje's dedication to planning ahead ensures smooth operations and top-notch results. "Rocking up" and hoping for the best isn't her style.</p>
+    <p class="testimonial-author">Client Recommendation</p>
+    <p class="testimonial-role">VA & Operations Support</p>
+  </div>
+
+  <div class="testimonial-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testimonial-text">It's like you read my ADHD brain and made it make sense. You've made my digital life so much easier. I can't thank you enough.</p>
+    <p class="testimonial-author">Digital Client</p>
+    <p class="testimonial-role">Coaching & Content Operations</p>
+  </div>
+
+  <div class="testimonial-card reveal">
+    <div class="quote-mark">"</div>
+    <p class="testimonial-text">Oh, I would say you are the best in organising my inbox.</p>
+    <p class="testimonial-author">Client Feedback</p>
+    <p class="testimonial-role">Executive VA Support</p>
+  </div>
+
+</div>
+```
+
+  </div>
+</div>
+
+<!-- Ways to Work -->
+
+<section class="ways-section reveal">
+  <div class="section-label">Engagement Models</div>
+  <h2 class="section-heading">Three ways<br><em>to work together.</em></h2>
+  <div class="ways-grid">
+    <div class="way-card reveal">
+      <div class="way-number">01 — Ongoing</div>
+      <div class="way-title">Ongoing Operational Support</div>
+      <p class="way-desc">For founders and coaches who need consistent backend management and structured operational support on a retainer basis. We build the systems and then keep them running.</p>
+    </div>
+    <div class="way-card reveal">
+      <div class="way-number">02 — Project</div>
+      <div class="way-title">Project or Launch Support</div>
+      <p class="way-desc">For specific launches, content cycles, or system setups that require focused, time-bound execution. Ideal for course launches, book launches, or quarterly campaigns.</p>
+    </div>
+    <div class="way-card reveal">
+      <div class="way-number">03 — Intensive</div>
+      <div class="way-title">VIP Implementation Days</div>
+      <p class="way-desc">Intensive, short-term support for system cleanup, workflow structuring, or content organisation. Get more done in one focused day than weeks of back-and-forth.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+
+<section id="contact" class="contact-section reveal">
+  <div class="section-label" style="justify-content: center;">Contact</div>
+  <div class="contact-heading">
+    Let's build something<br><em>that actually works.</em>
+  </div>
+  <p class="contact-sub">If you're building something serious and need operational and admin support that keeps everything moving smoothly — let's connect.</p>
+  <div class="contact-links">
+    <a href="mailto:Sommiieva@gmail.com" class="contact-link">
+      ✉ Sommiieva@gmail.com
+    </a>
+    <a href="https://www.linkedin.com/in/chisomeje-obiefuna" target="_blank" class="contact-link">
+      in Chisomeje Obiefuna
+    </a>
+    <a href="https://instagram.com/virtual.sommiie" target="_blank" class="contact-link">
+      ◎ Virtual.sommiie
+    </a>
+    <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">Virtual <span style="color: var(--blush);">Sommiie</span></div>
+  <div class="footer-copy">© 2025 Chisomeje Obiefuna — Open to remote roles globally</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const trail = document.getElementById('cursorTrail');
+  let mx = 0, my = 0, tx = 0, ty = 0;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top = my + 'px';
+  });
+
+  function animateTrail() {
+    tx += (mx - tx) * 0.12;
+    ty += (my - ty) * 0.12;
+    trail.style.left = tx + 'px';
+    trail.style.top = ty + 'px';
+    requestAnimationFrame(animateTrail);
+  }
+  animateTrail();
+
+  document.querySelectorAll('a, button, .service-item, .expertise-card, .case-card, .testimonial-card, .way-card').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.transform = 'translate(-50%, -50%) scale(2)';
+      cursor.style.background = 'var(--gold)';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      cursor.style.background = 'var(--blush)';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 100);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Stagger children reveals
+  document.querySelectorAll('.expertise-grid, .cases-grid, .testimonials-grid, .ways-grid').forEach(grid => {
+    const children = grid.querySelectorAll('.reveal');
+    children.forEach((child, i) => {
+      child.style.transitionDelay = (i * 0.1) + 's';
+    });
+  });
+</script>
+
+</body>
+</html>
